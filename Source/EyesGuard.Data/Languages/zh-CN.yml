@@ -1,4 +1,4 @@
-﻿---
+---
 Meta:
   Translators:
   - Name: 七夕泥
@@ -145,8 +145,12 @@ Translation:
     - 眨一眨眼
     - 往死里眨眼~
     - 遥望远方~
+    - 闭目养神，深呼吸~
     - 看看窗子外面
     - 洗个手，然后按摩按摩你的眼睛
+    - 站起来伸个大大的懒腰
+    - 转动眼球，上下左右看一看
+    - 去倒杯水喝喝，补充水分
     LongWindowMessage: 是时候进行大型休息了，出去走走吧
     LongWindowCancelButton: 我不要~
     Notifications:
