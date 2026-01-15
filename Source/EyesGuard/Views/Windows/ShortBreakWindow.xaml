@@ -99,27 +99,37 @@
             <Button
                 x:Name="DelayButton"
                 Grid.Row="1"
-                Padding="10,5"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Background="Transparent"
+                Height="32"
+                Margin="0,0,10,10"
+                Padding="15,5,15,5"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Background="#201A9F55"
                 BorderBrush="#FF1A9F55"
                 BorderThickness="1"
                 Click="DelayButton_Click"
                 Content="延迟5分钟"
+                Cursor="Hand"
+                FontSize="14"
                 Foreground="#FF1A9F55">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border
+                            x:Name="border"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="5">
+                            CornerRadius="0">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#1A1A9F55" />
+                                <Setter TargetName="border" Property="Background" Value="#FF1A9F55" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#CC1A9F55" />
+                                <Setter Property="Foreground" Value="White" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
