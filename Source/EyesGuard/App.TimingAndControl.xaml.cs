@@ -1,4 +1,4 @@
-﻿using EyesGuard.Views.Animations;
+using EyesGuard.Views.Animations;
 using EyesGuard.Views.Pages;
 using EyesGuard.Views.Windows;
 using FormatWith;
@@ -186,6 +186,60 @@ namespace EyesGuard
                 CurrentShortBreakWindow.Close();
                 CurrentShortBreakWindow = null;
             }
+            if (!App.Configuration.OnlyOneShortBreak && Configuration.ProtectionState == GuardStates.Protecting)
+            {
+                ShortBreakHandler.Start();
+            }
+            LongBreakHandler.Start();
+            ShortDurationCounter.Stop();
+
+            UIViewModels.HeaderMenu.ManualBreakEnabled = true;
+        }
+
+        public async void CancelShortBreak()
+        {
+            UIViewModels.ShortLongBreakTimeRemaining.NextShortBreak = LocalizedEnvironment.Translation.EyesGuard.Waiting;
+            UIViewModels.NotifyIcon.NextShortBreak = LocalizedEnvironment.Translation.EyesGuard.Waiting;
+
+            if (CurrentShortBreakWindow != null)
+            {
+                await CurrentShortBreakWindow.HideUsingLinearAnimationAsync();
+                if (CurrentShortBreakWindow != null)
+                {
+                    ((ShortBreakWindow)CurrentShortBreakWindow).LetItClose = true;
+                    CurrentShortBreakWindow.Close();
+                    CurrentShortBreakWindow = null;
+                }
+            }
+
+            if (!App.Configuration.OnlyOneShortBreak && Configuration.ProtectionState == GuardStates.Protecting)
+            {
+                ShortBreakHandler.Start();
+            }
+            LongBreakHandler.Start();
+            ShortDurationCounter.Stop();
+
+            UIViewModels.HeaderMenu.ManualBreakEnabled = true;
+        }
+
+        public async void DelayShortBreak(TimeSpan delay)
+        {
+            UIViewModels.ShortLongBreakTimeRemaining.NextShortBreak = LocalizedEnvironment.Translation.EyesGuard.Waiting;
+            UIViewModels.NotifyIcon.NextShortBreak = LocalizedEnvironment.Translation.EyesGuard.Waiting;
+
+            if (CurrentShortBreakWindow != null)
+            {
+                await CurrentShortBreakWindow.HideUsingLinearAnimationAsync();
+                if (CurrentShortBreakWindow != null)
+                {
+                    ((ShortBreakWindow)CurrentShortBreakWindow).LetItClose = true;
+                    CurrentShortBreakWindow.Close();
+                    CurrentShortBreakWindow = null;
+                }
+            }
+
+            NextShortBreak = delay;
+
             if (!App.Configuration.OnlyOneShortBreak && Configuration.ProtectionState == GuardStates.Protecting)
             {
                 ShortBreakHandler.Start();

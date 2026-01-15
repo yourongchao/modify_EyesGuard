@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,6 +37,16 @@ namespace EyesGuard.Views.Windows
         private void ShortBreakWindow_OnMouseRightButtonUp(object sender, MouseButtonEventArgs e)
         {
             @this.Close();
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            ((App)Application.Current).CancelShortBreak();
+        }
+
+        private void DelayButton_Click(object sender, RoutedEventArgs e)
+        {
+            ((App)Application.Current).DelayShortBreak(TimeSpan.FromMinutes(5));
         }
     }
 }
